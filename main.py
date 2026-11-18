@@ -11,14 +11,14 @@ Strategy (long only, full size, integer math throughout, fully deterministic):
     1.50% below it while the 15-minute return is already positive (a dip
     that has started to bounce). Fees plus slippage plus pool impact cost
     roughly 30-40 bps a round trip, so only a real dip is worth buying.
-  - Exit: sell the whole position when it is worth 1.50% over its cost
+  - Exit: sell the whole position when it is worth 1.60% over its cost
     (take profit), or when it falls 0.80% below the highest value it
     reached while held (trailing stop).
   - Everything else: hold cash. No shorts, no leverage, no randomness, no
     network, no wall clock, no files. Caps, fees, scales and the warm-up
     length are read from the hello message, never hard-coded.
 
-Backtest on the frozen dev window (1,440 bars): net PnL +$13.62 USDC,
+Backtest on the frozen dev window (1,440 bars): net PnL +$14.32 USDC,
 2 trades, max drawdown 0.64% (local replay; see BUILD_LOG.md).
 """
 
@@ -31,7 +31,7 @@ DIP_BPS = 200              # primary entry: close this far below the high
 DIP2_BPS = 150             # secondary entry: close this far below the high
 BOUNCE_BPS = 20            # secondary entry: 15-bar return at least this
 BOUNCE_BARS = 15           # bars back for the bounce check
-TAKE_PROFIT_BPS = 150      # exit: position worth this far over its cost
+TAKE_PROFIT_BPS = 160      # exit: position worth this far over its cost
 TRAIL_BPS = 80             # exit: position this far below its peak value
 MAX_SLIPPAGE_BPS = 100     # 1% past the close the order was decided on
 SYMBOL = "CBBTC"
